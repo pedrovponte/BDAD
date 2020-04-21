@@ -1,0 +1,70 @@
+1. SELECT nr
+   FROM aluno;
+
+2. SELECT cod, design
+   FROM cadeira
+   WHERE curso = 'AC';
+
+3. SELECT nome
+   FROM aluno
+   WHERE nome in (SELECT nome FROM prof);
+
+   OU
+
+   SELECT aluno.nome
+   FROM aluno, prof
+   WHERE aluno.nome = prof.nome  
+
+   OU
+
+   SELECT nome FROM aluno
+   INTERSECT
+   SELECT nome FROM prof;
+
+4. SELECT nome
+   FROM aluno
+   WHERE nome NOT in (SELECT nome FROM prof);
+
+   OU
+
+   SELECT nome from aluno
+   EXCEPT
+   SELECT nome FROM prof;
+   
+5. SELECT nome
+   FROM aluno
+   UNION
+   SELECT nome
+   From prof;
+
+6. SELECT nome
+   FROM aluno
+   WHERE nr in (SELECT nr FROM prova WHERE cod = 'TS1');
+
+7. SELECT nome
+   FROM aluno
+   WHERE nr in (SELECT nr FROM prova WHERE cod IN (SELECT cod FROM cadeira WHERE curso = 'IS'));
+
+OU
+
+   SELECT nome
+   FROM aluno
+   WHERE aluno.nr IN (SELECT nr from prova NATURAL JOIN cadeira WHERE cadeira.curso='IS')
+
+
+8. SELECT DISTINCT nome 
+   FROM Aluno 
+   WHERE nr NOT IN (SELECT nr AS alunonr FROM Aluno, Cadeira WHERE curso='IS' AND NOT (cod IN (SELECT cod FROM ProvaWHERE nota>=10 AND nr=alunonr)));
+
+9. SELECT DISTINCT nota
+   FROM prova P1
+   WHERE not EXISTS (SELECT * from prova P2 WHERE P2.nota > P1.nota);
+
+10. SELECT avg(nota)
+    FROM prova
+    WHERE cod = 'BD';
+
+11. SELECT COUNT(*)
+    FROM aluno;
+
+12. 
