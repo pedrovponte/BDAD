@@ -1,0 +1,68 @@
+a)
+SELECT *
+From Peca
+WHERE custounitario < 10 AND codigo LIKE '%98%';
+
+b)
+SELECT matricula
+FROM Carro
+WHERE idcarro IN (SELECT idcarro FROM Reparacao WHERE datainicio LIKE '%09%' AND datafim LIKE '%09%');
+
+c)
+SELECT nome 
+FROM Cliente 
+WHERE idCliente IN (SELECT idCliente FROM Reparacao WHERE idReparacao IN (SELECT idReparacao FROM ReparacaoPeca WHERE idPeca IN (SELECT idPeca FROM Peca WHERE custoUnitario > 10 ORDER BY custoUnitario DESC)));
+
+d)
+SELECT nome
+FROM Cliente
+where idcliente NOT IN (SELECT idcliente FROM Carro);
+
+e)
+SELECT idcarro, COUNT(*)
+FROM Reparacao
+GROUP BY idcarro;
+
+f)
+SELECT idCarro, (JULIANDAY(dataFim)-JULIANDAY(dataInicio)) AS days 
+FROM Reparacao;
+
+g) 
+SELECT avg(custounitario), SUM(quantidade * custounitario), SUM(quantidade), min(custounitario), max(custounitario)
+FROM Peca
+
+n)
+
+
+
+o)
+SELECT localidade
+FROM CodPostal
+WHERE codpostal1 IN (SELECT codpostal1 FROM Cliente)
+
+UNION
+
+SELECT localidade
+FROM CodPostal
+WHERE codpostal1 IN (SELECT codpostal1 FROM Funcionario)
+
+p)
+SELECT localidade
+FROM CodPostal
+WHERE codpostal1 IN (SELECT codpostal1 FROM Cliente)
+
+INTERSECT
+
+SELECT localidade
+FROM CodPostal
+WHERE codpostal1 IN (SELECT codpostal1 FROM Funcionario)
+
+s)
+SELECT matricula
+FROM Carro
+WHERE idcarro IN (SELECT idcarro FROM Reparacao GROUP By idcarro HAVING COUNT(*) > 1)
+
+t)
+SELECT datainicio, datafim, nome
+FROM Reparacao, Cliente
+WHERE idcarro IN (SELECT idcarro FROM Reparacao GROUP By idcarro HAVING COUNT(*) > 1)
