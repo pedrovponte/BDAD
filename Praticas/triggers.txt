@@ -1,0 +1,33 @@
+Exercício 1
+
+a)
+DROP TRIGGER if EXISTS checkClient;
+
+CREATE TRIGGER checkClient
+AFTER INSERT ON Reparacao
+for EACH ROW
+WHEN NEW.idCliente = NULL
+BEGIN
+UPDATE Reparacao 
+SET NEW.idcliente = Carro.idCliente 
+WHERE idcarro = NEW.idcarro;
+END;
+
+b)
+
+
+c) 
+DROP TRIGGER if EXISTS atualizaStockPecas;
+
+CREATE TRIGGER atualizaStockPecas
+AFTER INSERT ON ReparacaoPeca
+for EACH ROW
+BEGIN
+UPDATE Peca 
+SET quantidade = quantidade - NEW.quantidade
+WHERE Peca.idpeca = NEW.idpeca;
+END;
+
+Exercício 2
+
+a)
