@@ -13,7 +13,7 @@
     * A->B: {A}<sup>+</sup>={A} $\rightarrow$ não redundante;
     * B->C: {B}<sup>+</sup>={B} $\rightarrow$ não redundante;
     * B->D: {B}<sup>+</sup>={B} $\rightarrow$ não redundante;
-    * AD->E: {AD}<sup>+</sup>={A, D, B, C, E} $\rightarrow$ redundante;
+    * AD->E: {AD}<sup>+</sup>={A, D, B, C} $\rightarrow$ redundante;
 
     * removendo A de AD->E: {D}<sup>+</sup>={D};
     * removendo D de AD->E: {A}<sup>+</sup>={A, B, C, D, E};
@@ -30,7 +30,6 @@
 
     * R<sub>1</sub>(A, B, E)
     * R<sub>2</sub>(B, C, D)
-    * R<sub>3</sub>(A, F)
 
 12. Uma relação está na Forma Normal de Boyce-Codd se e só se para qualquer dependência funcional não trivial A<sub>1</sub>A<sub>2</sub>...A<sub>n</sub>$\rightarrow$B<sub>1</sub>B<sub>2</sub>...B<sub>m</sub> em R, {A<sub>1</sub>A<sub>2</sub>...A<sub>n</sub>} é uma superchave de R. O lado esquerdo de qualquer dependência funcional deve ser uma superchave.
 
